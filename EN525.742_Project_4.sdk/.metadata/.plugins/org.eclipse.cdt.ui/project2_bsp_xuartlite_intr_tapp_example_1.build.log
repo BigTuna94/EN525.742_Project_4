@@ -1,0 +1,13 @@
+20:35:10 **** Incremental Build of configuration Debug for project project2_bsp_xuartlite_intr_tapp_example_1 ****
+make all 
+'Building file: ../src/xuartlite_intr_tapp_example.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/xuartlite_intr_tapp_example.o" -I../../project2_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/xuartlite_intr_tapp_example.d" -MT"src/xuartlite_intr_tapp_example.o" -o "src/xuartlite_intr_tapp_example.o" "../src/xuartlite_intr_tapp_example.c"
+../src/xuartlite_intr_tapp_example.c:71:21: fatal error: xscugic.h: No such file or directory
+ #include "xscugic.h"
+                     ^
+compilation terminated.
+make: *** [src/xuartlite_intr_tapp_example.o] Error 1
+
+20:35:11 Build Finished (took 186ms)
+

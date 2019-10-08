@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;project3/src/audio_fifo.h&apos; to &apos;dds_phase_accum.h&apos;" description="Rename resource &apos;audio_fifo.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/audio_fifo.h" name="dds_phase_accum.h" stamp="1569284046979" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;project3/src/audio_fifo.c&apos; to &apos;dds_phase_accum.c&apos;" description="Rename resource &apos;audio_fifo.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/audio_fifo.c" name="dds_phase_accum.c" stamp="1569284057153" updateReferences="true"/>
+</session>

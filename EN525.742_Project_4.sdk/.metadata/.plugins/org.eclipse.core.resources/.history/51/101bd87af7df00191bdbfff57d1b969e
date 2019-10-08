@@ -1,0 +1,56 @@
+/*
+ * audio_fifo.c
+ *
+ *  Created on: Sep 10, 2019
+ *      Author: Zach
+ */
+
+#include "dds_phase_accum.h"
+
+#include <stdbool.h>
+
+#include "xparameters.h"
+#include "xgpio.h"
+#include "fsl.h"
+
+
+static bool dds_reset_gpio_initialized = false;
+XGpio Gpio_dds_reset;
+
+static int init_gpio(void) {
+	int Status = XGpio_Initialize(&Gpio_dds_reset, XPAR_AXI_GPIO_DDS_RESETN_DEVICE_ID);
+	if (Status != XST_SUCCESS) {
+		xil_printf("Gpio Initialization Failed with error: %d\r\n", Status);
+		return XST_FAILURE;
+	}
+	XGpio_SetDataDirection(&Gpio_dds_reset, 1, 0x01);
+	dds_reset_gpio_initialized = true;
+	return XST_SUCCESS;
+}
+
+static uint32_t freq_to_accum(uint32_t freq_hz) {
+	// phase_accum = (freq_hz * 2^27) / sample_rate => freq_hz * 2^27 / 100MHz => freq_hz * 1.34217728
+	const float freq_to_phase_accum_coefficient = 1.34217728;
+	uint32_t accum_val = (uint32_t) freq_hz * freq_to_phase_accum_coefficient;
+	return accum_val;
+}
+
+void set_dds_accum(uint32_t freq_hz) {
+	uint32_t accum_val = freq_to_accum(freq_hz) >> 5; // only top 27 bits
+	putfslx(accum_val, FSL_ID, FSL_DEFAULT);
+	xil_printf("Frequency set to %luHz\r\n", freq_hz);
+}
+
+void reset_dds_phase(void) {
+	if (!dds_reset_gpio_initialized) {
+		if (init_gpio() != XST_SUCCESS) {
+			xil_printf("\r\n!!!\r\n!!!\r\n!!!\r\n\tFatal Error!!! Could not initialize GPIO for DDS reset!\r\n!!!\r\n!!!\r\n!!!\r\n");
+			Xil_AssertVoid(0);
+		}
+	}
+	// Reset DDS via GPIO Pin
+	XGpio_DiscreteWrite(&Gpio_dds_reset, 1, 0x0001);
+	for (int delay = 0; delay < DDS_RESET_DELAY; delay++);
+	XGpio_DiscreteWrite(&Gpio_dds_reset, 1, 0x0000);
+
+}

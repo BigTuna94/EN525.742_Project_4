@@ -1,0 +1,13 @@
+20:35:09 **** Incremental Build of configuration Debug for project project2_bsp_xspi_intr_example_1 ****
+make all 
+'Building file: ../src/xspi_intr_example.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/xspi_intr_example.o" -I../../project2_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/xspi_intr_example.d" -MT"src/xspi_intr_example.o" -o "src/xspi_intr_example.o" "../src/xspi_intr_example.c"
+../src/xspi_intr_example.c:77:22: fatal error: xscugic.h: No such file or directory
+  #include "xscugic.h"
+                      ^
+compilation terminated.
+make: *** [src/xspi_intr_example.o] Error 1
+
+20:35:09 Build Finished (took 186ms)
+

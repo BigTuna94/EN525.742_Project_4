@@ -1,0 +1,99 @@
+#include "serial_audio_lib.h"
+
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include "xparameters.h"
+#include "xuartlite_l.h"
+#include "dds_phase_accum.h"
+
+
+#define MAX_AUDIO_FILE_SAMPLES 4096
+
+static uint32_t curr_freq = 1000;
+
+static void inc_freq(uint32_t change_hz) {
+	curr_freq += change_hz;
+	set_dds_accum(curr_freq);
+}
+
+static void dec_freq(uint32_t change_hz) {
+	curr_freq -= change_hz;
+	set_dds_accum(curr_freq);
+}
+
+static void get_freq(void) {
+	bool invalid_input = false;
+	char input_buff[10];
+	memset(input_buff, 0, sizeof(input_buff));
+
+	xil_printf("\r\nEnter a frequency[0-1000000000]: ");
+	int input_len;
+	for (input_len = 0; input_len < sizeof(input_buff); input_len++) {
+		char new_char = getchar();
+		if (new_char == '\n' || new_char == '\r') {
+			xil_printf("\r\n");
+			break;
+		}
+		if (new_char >= '0' && new_char <= '9') {
+			input_buff[input_len] = new_char;
+		} else {
+			invalid_input = true;
+		}
+		xil_printf("\t%d\r\n", new_char);
+		//xil_printf("%c", new_char);
+	}
+	if (input_len <= 0 || invalid_input) {
+		xil_printf("Invalid input detected!\r\n");
+	} else {
+		uint32_t new_freq = (uint32_t)atoi(input_buff);
+		curr_freq = new_freq;
+		set_dds_accum(curr_freq);
+	}
+}
+
+
+void print_main_menu(void) {
+	xil_printf("\t===== Main Menu =====\r\n");
+	xil_printf("Current Frequency: %luHz\r\n", curr_freq);
+	xil_printf("\tf - set the frequency\r\n");
+	xil_printf("\tu - step frequency up 100Hz\r\n");
+	xil_printf("\tU - step frequency up 1000Hz\r\n");
+	xil_printf("\td - step frequency down 100Hz\r\n");
+	xil_printf("\tD - step frequency down 1000Hz\r\n");
+	xil_printf("\tR - reset phase (resets DDS)\r\n");
+	xil_printf("\r\nPress a key to continue...\r\n");
+}
+
+
+/*
+ * Waits for entered option,
+ * Sanitizes Entered option,
+ * returns option
+ */
+void handle_choice(void) {
+	char input_c =  getchar();
+	switch (input_c) {
+		case 'f':
+			get_freq(); break;
+		case 'u':
+			inc_freq(100); break;
+		case 'U':
+			inc_freq(1000); break;
+		case 'd':
+			dec_freq(100); break;
+		case 'D':
+			dec_freq(1000); break;
+		case 'r':
+		case 'R':
+			reset_dds_phase(); break;
+		default:
+			xil_printf("[handle_choice] Unhandled character received: 0x%02x\r\n", input_c);
+	}
+}
+
+void init_audio(void) {
+	set_dds_accum(curr_freq);
+}
+
+

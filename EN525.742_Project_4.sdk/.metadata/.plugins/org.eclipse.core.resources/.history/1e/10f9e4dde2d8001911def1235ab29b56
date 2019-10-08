@@ -1,0 +1,144 @@
+#include "serial_audio_lib.h"
+
+#include "audio_fifo.h"
+
+#include <stdlib.h>
+#include <stdio.h>
+#include "xparameters.h"
+#include "xuartlite_l.h"
+
+
+#define MAX_AUDIO_FILE_SAMPLES 4096
+
+// In number of samples (one sample is 32 bits)
+// i.e. you can read audio data as loaded_audio_file[sample]
+static uint32_t audio_file_samples = 0;
+static uint32_t loaded_audio_file[MAX_AUDIO_FILE_SAMPLES];
+
+
+#define NUM_SIN_STEPS 9
+void sin_audio_test() {
+    uint16_t sin_0_to_2pi_scaled[NUM_SIN_STEPS] = {
+    	16383, 	// sin(0pi/4)
+		27968, 	// sin(1pi/4
+		32766, 	// sin(2pi/4)
+		27968, 	// sin(3pi/4)
+		16383, 	// sin(4pi/4)
+		 4798,  // sin(5pi/4)
+		    0,  // sin(6pi/4)
+		 4798,  // sin(7pi/4)
+		16383   // sin(8pi/4)
+    };
+
+    uint32_t num_sin = 0;
+    while(1) {
+    	for (int i = 0; i < NUM_SIN_STEPS; i++) {
+    		uint32_t new_data = (sin_0_to_2pi_scaled[i] << 16) | sin_0_to_2pi_scaled[i];
+    		push_to_fifo( new_data );
+    	}
+    	if (++num_sin >= 0xFFF) {
+    		xil_printf("Pushed %lu sin wave iterations!\r\n", num_sin);
+    		num_sin = 0;
+    	}
+    }
+}
+
+
+void print_main_menu(void) {
+	xil_printf("\r\n\tWelcome to the Audio Playback System!\r\n");
+	xil_printf("\t===== Main Menu =====\r\n");
+	xil_printf("\tL - Load a new audio file\r\n");
+	xil_printf("\tC - Playback loaded file continuously\r\n");
+	xil_printf("\tP - Playback loaded file once\r\n");
+	xil_printf("\r\nPress a key to continue...\r\n");
+}
+
+
+/*
+ * Waits for entered option,
+ * Sanitizes Entered option,
+ * returns option
+ */
+User_Option get_option(void) {
+	User_Option choice = UNKNOWN;
+	char input_c =  getchar();
+	switch (input_c) {
+		case 'l':
+		case 'L':
+			choice = LOAD; break;
+		case 'c':
+		case 'C':
+			choice = PLAY_CONTINUOUS; break;
+		case 'p':
+		case 'P':
+			choice = PLAY_ONCE; break;
+	}
+	return choice;
+}
+
+static uint32_t bytes4_to_32bits (uint8_t *bytes) {
+	uint32_t ret = 0;
+	ret |= (bytes[1] << 24);
+	ret |= (bytes[0] << 16);
+	ret |= (bytes[3] << 8);
+	ret |= (bytes[2]);
+	return ret;
+}
+
+static void empty_loaded_audio(void) {
+	for (uint32_t i = 0; i < audio_file_samples; i++) {
+		loaded_loaded_audio_file[i] = 0;
+	}
+}
+
+
+void load_new_file(void) {
+	uint32_t *new_audio_data = NULL;
+	uint32_t new_audio_file_size = 0; // in 32bit samples
+	uint8_t byte_buff[4] = {0, 0, 0, 0};
+
+	xil_printf("[load_new_file] Send new audio file now!\r\n");
+
+	// Get the File size - First four bytes transfered
+	for (int i = 0; i < 4; i++) {
+		byte_buff[i] = XUartLite_RecvByte(XPAR_AXI_UARTLITE_BASEADDR);
+ 	}
+	new_audio_file_size = bytes4_to_32bits(byte_buff);
+
+	xil_printf("[load_new_file] New audio file size: 0x%lx\r\n", new_audio_file_size);
+
+	// Free old audio data
+	if (loaded_audio_file != NULL) {
+		free((void *)loaded_audio_file);
+	}
+	audio_file_samples = 0;
+
+	// Allocate space for new data
+	//	new_audio_data = malloc(new_audio_file_size * sizeof(uint32_t));
+	//	if (new_audio_data == NULL) {
+	//		xil_printf("[load_new_file] Could not allocate memory for new audio file!\r\n");
+	//	}
+
+	// Read in new data
+	for (uint32_t sample = 0; sample < new_audio_file_size; sample++) {
+		// cheap way to wipe buffer
+		byte_buff[0] = byte_buff[1] = byte_buff[2] = byte_buff[3] = 0;
+		// get the next 4 bytes
+		for (int sub_sample_byte = 0; sub_sample_byte < 4; sub_sample_byte++) {
+			byte_buff[sub_sample_byte] = XUartLite_RecvByte(XPAR_AXI_UARTLITE_BASEADDR);
+		}
+		new_audio_data[sample] = bytes4_to_32bits(byte_buff);
+	}
+
+	xil_printf("Received data:\r\n");
+	for (uint32_t i=0; i < new_audio_file_size; i--) {
+		xil_printf("\t0x%04lx\r\n", new_audio_data[i]);
+	}
+
+	audio_file_size = new_audio_file_size;
+	loaded_audio_file = new_audio_data;
+}
+
+void play_loaded_file(void) {}
+
+void play_loaded_file_loop(void) {}

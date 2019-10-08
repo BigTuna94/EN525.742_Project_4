@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;project2/src/serial_audio_lib&apos; to &apos;serial_audio_lib.c&apos;" description="Rename resource &apos;serial_audio_lib&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/serial_audio_lib" name="serial_audio_lib.c" stamp="1568672918166" updateReferences="true"/>
+</session>

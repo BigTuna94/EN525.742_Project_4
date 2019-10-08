@@ -1,0 +1,107 @@
+/*
+ * codec.c
+ *
+ *  Created on: Sep 9, 2019
+ *      Author: Zach
+ */
+#include <stdint.h>
+#include "xparameters.h"
+#include "xspi_l.h"
+#include "xspi.h"
+#include "xstatus.h"
+
+#include "codec.h"
+
+static XSpi Spi; /* The instance of the SPI device */
+
+
+/*
+ * Reference: https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1761.pdf
+ */
+static void write_reg(uint32_t reg, uint32_t val) {
+	uint8_t chip_addr = 0;
+	uint8_t addr_high, addr_low, data_high, data_low;
+
+	addr_high = (reg & 0xFF00) >> 8;
+	addr_low = (reg & 0x00FF);
+	data_high = (val & 0xFF00) >> 8;
+	data_low = (val & 0x00FF);
+
+	// void XSpi_WriteReg(u32 BaseAddress, u32 RegOffset, u32 RegisterValue);
+	XSpi_WriteReg(XPAR_SPI_0_BASEADDR, XSP_DTR_OFFSET, chip_addr);
+	XSpi_WriteReg(XPAR_SPI_0_BASEADDR, XSP_DTR_OFFSET, addr_high);
+	XSpi_WriteReg(XPAR_SPI_0_BASEADDR, XSP_DTR_OFFSET, addr_low);
+	XSpi_WriteReg(XPAR_SPI_0_BASEADDR, XSP_DTR_OFFSET, data_high);
+	XSpi_WriteReg(XPAR_SPI_0_BASEADDR, XSP_DTR_OFFSET, data_low);
+}
+
+
+static int init_spi(void) {
+	int Status;
+	XSpi_Config *ConfigPtr;	/* Pointer to Configuration data */
+
+	/*
+	 * Initialize the SPI driver so that it is  ready to use.
+	 */
+	ConfigPtr = XSpi_LookupConfig(XPAR_SPI_0_DEVICE_ID);
+	if (ConfigPtr == NULL) {
+		return XST_DEVICE_NOT_FOUND;
+	}
+
+	Status = XSpi_CfgInitialize(&Spi, ConfigPtr,
+				  ConfigPtr->BaseAddress);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	/*
+	 * Perform a self-test to ensure that the hardware was built correctly
+	 */
+	Status = XSpi_SelfTest(&Spi);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	return XST_SUCCESS;
+
+//	uint32_t Control = XSpi_ReadReg(XPAR_SPI_0_BASEADDR, XSP_CR_OFFSET);
+//	Control |= XSP_CR_ENABLE_MASK;
+//	Control &= ~XSP_CR_TRANS_INHIBIT_MASK;
+//	XSpi_WriteReg(XPAR_SPI_0_BASEADDR, XSP_CR_OFFSET, Control);
+
+}
+
+static void configure_codec(void) {
+
+	write_reg(0x4000,1);
+	write_reg(0x4000,1);
+	write_reg(0x4000,1);
+	write_reg(0x4000,1);
+	write_reg(0x40f9,0x7f);
+	write_reg(0x40fa,0x3);
+	write_reg(0x401c,0x2d);
+	write_reg(0x401e,0x4d);
+	write_reg(0x4020,5);
+	write_reg(0x4021,0x11);
+	write_reg(0x4025,0xe6);
+	write_reg(0x4026,0xe6);
+	write_reg(0x4029,3);
+	write_reg(0x402a,3);
+	write_reg(0x4016,0x21);
+	write_reg(0x40F2,0x1);
+
+}
+
+
+void init_codec(void) {
+	xil_printf("Initializing CODEC System...\n");
+
+	if ( init_spi() == XST_SUCCESS) {
+		xil_printf("\tSPI Initialized Successfully!\n");
+	} else {
+		xil_printf("\tError initializing SPI!!!\n");
+		return;
+	}
+
+	configure_codec();
+}

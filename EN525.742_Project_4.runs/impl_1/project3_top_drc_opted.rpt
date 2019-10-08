@@ -1,0 +1,86 @@
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2017.4.1 (win64) Build 2117270 Tue Jan 30 15:32:00 MST 2018
+| Date         : Mon Oct  7 20:03:19 2019
+| Host         : ZPCX running 64-bit major release  (build 9200)
+| Command      : report_drc -file project3_top_drc_opted.rpt -pb project3_top_drc_opted.pb -rpx project3_top_drc_opted.rpx
+| Design       : project3_top
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 9
++-----------+----------+-------------------------------------+------------+
+| Rule      | Severity | Description                         | Violations |
++-----------+----------+-------------------------------------+------------+
+| BUFC-1    | Warning  | Input Buffer Connections            | 1          |
+| REQP-1617 | Warning  | use_IOB_register                    | 1          |
+| RPBF-3    | Warning  | IO port buffering is incomplete     | 4          |
+| ZPS7-1    | Warning  | PS7 block required                  | 1          |
+| REQP-28   | Advisory | enum_USE_MULT_NONE_connects_CEM_GND | 1          |
+| REQP-30   | Advisory | enum_MREG_0_connects_CEM_GND        | 1          |
++-----------+----------+-------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+BUFC-1#1 Warning
+Input Buffer Connections  
+Input buffer spi_rtl_ss_iobuf_0/IBUF (in spi_rtl_ss_iobuf_0 macro) has no loads. It is recommended to have an input buffer drive an internal load.
+Related violations: <none>
+
+REQP-1617#1 Warning
+use_IOB_register  
+The FDRE cell proc_system_gen/axi_quad_spi_0/U0/NO_DUAL_QUAD_MODE.QSPI_NORMAL/QSPI_LEGACY_MD_GEN.QSPI_CORE_INTERFACE_I/LOGIC_FOR_MD_0_GEN.SPI_MODULE_I/RATIO_NOT_EQUAL_4_GENERATE.SCK_O_NQ_4_NO_STARTUP_USED.SCK_O_NE_4_FDRE_INST has IOB set to TRUE, but does not connect directly to an IO cell. Remove the constraint or ensure the FDRE is property connected to an IO.
+Related violations: <none>
+
+RPBF-3#1 Warning
+IO port buffering is incomplete  
+Device port AC_GPIO0 expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#2 Warning
+IO port buffering is incomplete  
+Device port AC_GPIO2 expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#3 Warning
+IO port buffering is incomplete  
+Device port AC_GPIO3 expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#4 Warning
+IO port buffering is incomplete  
+Device port AC_MCLK expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+ZPS7-1#1 Warning
+PS7 block required  
+The PS7 cell must be used in this Zynq design in order to enable correct default configuration.
+Related violations: <none>
+
+REQP-28#1 Advisory
+enum_USE_MULT_NONE_connects_CEM_GND  
+fir_2_test/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.g_paths[0].g_madd_array_and_accum.g_accum.i_accum/i_add_accum/g_dsp48.g_dsp48e1.i_dsp48e1: When the DSP48E1 USE_MULT attribute is set to NONE, the CEM input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-30#1 Advisory
+enum_MREG_0_connects_CEM_GND  
+fir_2_test/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.g_paths[0].g_madd_array_and_accum.g_accum.i_accum/i_add_accum/g_dsp48.g_dsp48e1.i_dsp48e1: When the DSP48E1 MREG attribute is set to 0, the CEM input pin should be tied to GND to save power.
+Related violations: <none>
+
+

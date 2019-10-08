@@ -1,0 +1,6 @@
+20:35:10 **** Incremental Build of configuration Debug for project project2_bsp_xspi_selftest_example_1 ****
+make all 
+make: Nothing to be done for `all'.
+
+20:35:10 Build Finished (took 134ms)
+

@@ -1,0 +1,12 @@
+
+{ 
+    crc :  1785842633530287678  , 
+    ccp_crc :  0  , 
+    cmdline : " -wto f64c1ef13fc44ad580fbc680ab965668 --incr --debug typical --relax --mt 2 -L xbip_utils_v3_0_8 -L axi_utils_v2_0_4 -L fir_compiler_v7_2_10 -L xil_defaultlib -L xbip_pipe_v3_0_4 -L xbip_bram18k_v3_0_4 -L mult_gen_v12_0_13 -L xbip_dsp48_wrapper_v3_0_4 -L xbip_dsp48_addsub_v3_0_4 -L xbip_dsp48_multadd_v3_0_4 -L dds_compiler_v6_0_15 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot dds_fir_tb_behav xil_defaultlib.dds_fir_tb xil_defaultlib.glbl" , 
+    buildDate : "Jan 30 2018" , 
+    buildTime : "15:48:17" , 
+    linkCmd : "C:\\Xilinx\\Vivado\\2017.4\\data\\..\\tps\\mingw\\6.2.0\\win64.o\\nt\\bin\\gcc.exe -Wa,-W  -O -Wl,--stack,104857600 -o \"xsim.dir/dds_fir_tb_behav/xsimk.exe\"   \"xsim.dir/dds_fir_tb_behav/obj/xsim_0.win64.obj\" \"xsim.dir/dds_fir_tb_behav/obj/xsim_1.win64.obj\" \"xsim.dir/dds_fir_tb_behav/obj/xsim_2.win64.obj\" \"xsim.dir/dds_fir_tb_behav/obj/xsim_3.win64.obj\" \"C:\\Xilinx\\Vivado\\2017.4\\lib\\win64.o\\\\librdi_simulator_kernel.dll\" \"C:\\Xilinx\\Vivado\\2017.4\\lib\\win64.o\\\\librdi_simbridge_kernel.dll\"" , 
+    aggregate_nets : 
+    [ 
+    ] 
+} 

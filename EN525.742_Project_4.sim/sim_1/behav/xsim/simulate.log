@@ -1,0 +1,5 @@
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+Failure: Simulation Finished.
+Time: 4816655 ns  Iteration: 0  Process: /dds_fir_tb/capture_output  File: C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sim_1/imports/EN525.742_Project_4/dds_fir_tb.vhd
+$finish called at time : 4816655 ns : File "C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sim_1/imports/EN525.742_Project_4/dds_fir_tb.vhd" Line 180

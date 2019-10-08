@@ -1,0 +1,10 @@
+0.6
+2017.4
+Jan 30 2018
+15:48:17
+C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.sim/sim_1/behav/xsim/glbl.v,1513215259,verilog,,,,glbl,,,,,,,,
+C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sim_1/imports/EN525.742_Project_4/dds_fir_tb.vhd,1570494261,vhdl,,,,dds_fir_tb,,,,,,,,
+C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/project_1_part_2.srcs/sources_1/imports/p1p2_src/counter10bit.vhd,1567884623,vhdl,C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sim_1/imports/EN525.742_Project_4/dds_fir_tb.vhd,,,counter10bit,,,,,,,,
+C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/dds_compiler_0/sim/dds_compiler_0.vhd,1570486264,vhdl,,,,dds_compiler_0,,,,,,,,
+C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/fir_compiler_0/sim/fir_compiler_0.vhd,1570489277,vhdl,,,,fir_compiler_0,,,,,,,,
+C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/fir_compiler_1/sim/fir_compiler_1.vhd,1570489330,vhdl,,,,fir_compiler_1,,,,,,,,

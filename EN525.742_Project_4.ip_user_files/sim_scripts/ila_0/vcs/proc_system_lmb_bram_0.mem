@@ -1,0 +1,16 @@
+// Mem file initialization records.
+//
+// SW Build 2117270 on Tue Jan 30 15:32:00 MST 2018
+// Vivado v2017.4.1 (64-bit)
+// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+// Created on Sunday September 15, 2019 - 09:08:33 pm, from:
+//
+//     Map file     - C:\Users\Zach\Documents\GradSchool\Fall_2019\EN525.742_SOC_Design_Lab\EN525.742_Project_2\project_2.srcs\sources_1\bd\proc_system\proc_system.bmm
+//     Data file(s) - c:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_2/project_2.srcs/sources_1/bd/proc_system/ip/proc_system_microblaze_0_0/data/mb_bootloop_le.elf
+//
+// Address space 'proc_system_microblaze_0.proc_system_microblaze_0_local_memory_lmb_bram_64K_1_ADDR_SPACE', bit lane [31:0].
+//
+// Bus width = 32 bits, number of bus blocks = 1.
+
+@00000000
+    B8000000
