@@ -183,7 +183,7 @@ begin
 
     -- Procedure to drive an impulse and let the impulse response emerge on the data master channel
     -- samples is the number of input samples to drive; default is enough for impulse response output to emerge
-    procedure drive_impulse ( samples : natural := 666 ) is
+    procedure drive_impulse ( samples : natural := 773 ) is
       variable impulse : std_logic_vector(15 downto 0);
     begin
       impulse := (others => '0');  -- initialize unused bits to zero
@@ -210,7 +210,7 @@ begin
     drive_zeros(2);  -- 2 normal input samples
     s_axis_data_tvalid <= '1';
     wait for CLOCK_PERIOD * 160;  -- provide data as fast as the core can accept it for 5 input samples worth
-    drive_zeros(657);  -- back to normal operation
+    drive_zeros(764);  -- back to normal operation
 
     -- End of test
     report "Not a real failure. Simulation finished successfully. Test completed successfully" severity failure;

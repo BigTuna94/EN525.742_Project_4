@@ -1,0 +1,6 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../EN525.742_Project_4.srcs/sources_1/bd/proc_system/ipshared/ec67/hdl" \
+"dds_fir_tb_time_impl.v" \
+
+# Do not sort compile order
+nosort

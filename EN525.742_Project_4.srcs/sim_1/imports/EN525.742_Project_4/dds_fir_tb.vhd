@@ -91,9 +91,11 @@ END COMPONENT;
     signal dac_latched_data : std_logic;
     
     constant pa_50k : std_logic_vector(26 downto 0) := std_logic_vector(TO_UNSIGNED(67109, 27)); -- pase_accum  = (freq_desiredHz * 2^27) / DDS freq = (50000 * 2^27)/100MHz = 67108.864 ~= 67109
+    constant pa_500k : std_logic_vector(26 downto 0) := std_logic_vector(TO_UNSIGNED(671089, 27));
     constant pa_100k : std_logic_vector(26 downto 0) := std_logic_vector(TO_UNSIGNED(134218, 27));
     constant pa_18k : std_logic_vector(26 downto 0) := std_logic_vector(TO_UNSIGNED(24159, 27));
     constant pa_10k : std_logic_vector(26 downto 0) := std_logic_vector(TO_UNSIGNED(13422, 27));
+    constant pa_5k : std_logic_vector(26 downto 0) := std_logic_vector(TO_UNSIGNED(6711, 27));
     --std_logic_vector(TO_UNSIGNED(134218, 27));
     signal num_samples : unsigned(13 downto 0) := (others => '0');
     signal max_samples : unsigned(13 downto 0) := TO_UNSIGNED(16000, 14);
@@ -124,16 +126,17 @@ begin
     m_axis_data_tdata => fir1_data_out
   );
   
-  fir2_clk_gen : entity counter10bit port map (
-    CLK100MHZ => clk,
-    ENABLE => '1',
-    RESET => reset,
-    MAX_CNT => max_32_count,
-    ROLLOVER => fir2_aclk_3125khz
-  );
+--  fir2_clk_gen : entity counter10bit port map (
+--    CLK100MHZ => clk,
+--    ENABLE => '1',
+--    RESET => reset,
+--    MAX_CNT => max_32_count,
+--    ROLLOVER => fir2_aclk_3125khz
+--  );
   
   fir_2_test : fir_compiler_1 port map (
-    aclk => fir2_aclk_3125khz,
+    --aclk => fir2_aclk_3125khz,
+    aclk => clk,
     s_axis_data_tvalid => fir1_data_tvalid_out,
     -- s_axis_data_tready : OUT STD_LOGIC;
     s_axis_data_tdata => fir1_data_out,
@@ -194,7 +197,7 @@ begin
     reset <= '1';
     wait for 20ns;
     
-    dds_input_data <=  "00000" & pa_10k; --pa_100k;
+    dds_input_data <=  "00000" & pa_5k;
     reset <= '0'; -- Start
     
     

@@ -1,6 +1,6 @@
 webtalk_init -webtalk_dir C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.sim/sim_1/behav/xsim/xsim.dir/dds_fir_tb_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Mon Oct  7 21:17:21 2019" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Tue Oct  8 21:55:41 2019" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2017.4.1 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "2117270" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "2c37ef13-5b4b-4c61-b78c-3c4228599305" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "f64c1ef13fc44ad580fbc680ab965668" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "6" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "20" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Microsoft Windows 8 or later , 64-bit" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "AMD Ryzen 9 3900X 12-Core Processor            " -context "user_environment"
@@ -23,16 +23,11 @@ webtalk_add_data -client project -key total_processors -value "2" -context "user
 webtalk_add_data -client project -key system_ram -value "34.000 GB" -context "user_environment"
 webtalk_register_client -client xsim
 webtalk_add_data -client xsim -key runall -value "true" -context "xsim\\command_line_options"
-webtalk_add_data -client xsim -key runall -value "true" -context "xsim\\command_line_options"
-webtalk_add_data -client xsim -key runall -value "true" -context "xsim\\command_line_options"
-webtalk_add_data -client xsim -key runall -value "true" -context "xsim\\command_line_options"
-webtalk_add_data -client xsim -key runall -value "true" -context "xsim\\command_line_options"
-webtalk_add_data -client xsim -key runall -value "true" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key Command -value "xsim" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\usage"
-webtalk_add_data -client xsim -key runtime -value "4816655 ns" -context "xsim\\usage"
+webtalk_add_data -client xsim -key runtime -value "417025 ns" -context "xsim\\usage"
 webtalk_add_data -client xsim -key iteration -value "0" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Time -value "1893.67_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Memory -value "31644_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 3061436643 -regid "" -xml C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.sim/sim_1/behav/xsim/xsim.dir/dds_fir_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.sim/sim_1/behav/xsim/xsim.dir/dds_fir_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.sim/sim_1/behav/xsim/xsim.dir/dds_fir_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Simulation_Time -value "164.39_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Simulation_Memory -value "17420_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 795289986 -regid "" -xml C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.sim/sim_1/behav/xsim/xsim.dir/dds_fir_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.sim/sim_1/behav/xsim/xsim.dir/dds_fir_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.sim/sim_1/behav/xsim/xsim.dir/dds_fir_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

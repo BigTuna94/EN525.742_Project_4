@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.4.1 (win64) Build 2117270 Tue Jan 30 15:32:00 MST 2018
-| Date         : Mon Oct  7 19:03:44 2019
+| Date         : Tue Oct  8 21:43:24 2019
 | Host         : ZPCX running 64-bit major release  (build 9200)
 | Command      : report_utilization -file fir_compiler_0_utilization_synth.rpt -pb fir_compiler_0_utilization_synth.pb
 | Design       : fir_compiler_0
@@ -30,13 +30,13 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 2859 |     0 |     53200 |  5.37 |
-|   LUT as Logic             |    8 |     0 |     53200 |  0.02 |
-|   LUT as Memory            | 2851 |     0 |     17400 | 16.39 |
-|     LUT as Distributed RAM |    0 |     0 |           |       |
-|     LUT as Shift Register  | 2851 |     0 |           |       |
-| Slice Registers            | 3348 |     0 |    106400 |  3.15 |
-|   Register as Flip Flop    | 3348 |     0 |    106400 |  3.15 |
+| Slice LUTs*                |  215 |     0 |     53200 |  0.40 |
+|   LUT as Logic             |   67 |     0 |     53200 |  0.13 |
+|   LUT as Memory            |  148 |     0 |     17400 |  0.85 |
+|     LUT as Distributed RAM |   32 |     0 |           |       |
+|     LUT as Shift Register  |  116 |     0 |           |       |
+| Slice Registers            |  304 |     0 |    106400 |  0.29 |
+|   Register as Flip Flop    |  304 |     0 |    106400 |  0.29 |
 |   Register as Latch        |    0 |     0 |    106400 |  0.00 |
 | F7 Muxes                   |    0 |     0 |     26600 |  0.00 |
 | F8 Muxes                   |    0 |     0 |     13300 |  0.00 |
@@ -58,8 +58,8 @@ Table of Contents
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 0     |          Yes |         Set |            - |
-| 3348  |          Yes |       Reset |            - |
+| 5     |          Yes |         Set |            - |
+| 299   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -82,8 +82,8 @@ Table of Contents
 +----------------+------+-------+-----------+-------+
 |    Site Type   | Used | Fixed | Available | Util% |
 +----------------+------+-------+-----------+-------+
-| DSPs           |   65 |     0 |       220 | 29.55 |
-|   DSP48E1 only |   65 |       |           |       |
+| DSPs           |    4 |     0 |       220 |  1.82 |
+|   DSP48E1 only |    4 |       |           |       |
 +----------------+------+-------+-----------+-------+
 
 
@@ -149,15 +149,18 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     | 3348 |        Flop & Latch |
-| SRLC32E  | 1427 |  Distributed Memory |
-| SRL16E   | 1424 |  Distributed Memory |
-| DSP48E1  |   65 |    Block Arithmetic |
-| LUT4     |    4 |                 LUT |
-| LUT6     |    3 |                 LUT |
-| LUT5     |    1 |                 LUT |
-| LUT3     |    1 |                 LUT |
-| LUT2     |    1 |                 LUT |
+| FDRE     |  299 |        Flop & Latch |
+| SRLC32E  |   80 |  Distributed Memory |
+| SRL16E   |   36 |  Distributed Memory |
+| LUT5     |   34 |                 LUT |
+| RAMD64E  |   32 |  Distributed Memory |
+| LUT3     |   31 |                 LUT |
+| LUT4     |   13 |                 LUT |
+| LUT2     |   10 |                 LUT |
+| LUT6     |    8 |                 LUT |
+| FDSE     |    5 |        Flop & Latch |
+| DSP48E1  |    4 |    Block Arithmetic |
+| LUT1     |    1 |                 LUT |
 +----------+------+---------------------+
 
 

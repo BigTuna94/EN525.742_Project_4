@@ -16,7 +16,8 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_msg_config -id {Common 17-41} -limit 10000000
+set_param tcl.collectionResultDisplayLimit 0
+set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -33,10 +34,9 @@ set_property ip_cache_permissions {read write} [current_project]
 add_files C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/Debug/project3.elf
 set_property SCOPED_TO_REF proc_system [get_files -all C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/Debug/project3.elf]
 set_property SCOPED_TO_CELLS microblaze_0 [get_files -all C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/Debug/project3.elf]
-add_files c:/Users/Zach/Documents/MATLAB/fir_filter_1.coe
-add_files c:/Users/Zach/Documents/MATLAB/fir_filter_2.coe
+add_files C:/Users/Zach/Documents/MATLAB/fir_filter_1.coe
+add_files C:/Users/Zach/Documents/MATLAB/fir_filter_2.coe
 read_vhdl -library xil_defaultlib {
-  C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/project_1_part_2.srcs/sources_1/imports/p1p2_src/counter10bit.vhd
   C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/project_1_part_2.srcs/sources_1/imports/p1p2_src/lowlevel_dac_intfc.vhd
   C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/src/project3_top.vhd
 }
@@ -78,11 +78,11 @@ set_property used_in_implementation false [get_files -all c:/Users/Zach/Document
 read_ip -quiet C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/dds_compiler_0/dds_compiler_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/dds_compiler_0/dds_compiler_0_ooc.xdc]
 
-read_ip -quiet c:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/fir_compiler_0/fir_compiler_0.xci
+read_ip -quiet C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/fir_compiler_0/fir_compiler_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/fir_compiler_0/constraints/fir_compiler_v7_2.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/fir_compiler_0/fir_compiler_0_ooc.xdc]
 
-read_ip -quiet c:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/fir_compiler_1/fir_compiler_1.xci
+read_ip -quiet C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/fir_compiler_1/fir_compiler_1.xci
 set_property used_in_implementation false [get_files -all c:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/fir_compiler_1/constraints/fir_compiler_v7_2.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/ip/fir_compiler_1/fir_compiler_1_ooc.xdc]
 

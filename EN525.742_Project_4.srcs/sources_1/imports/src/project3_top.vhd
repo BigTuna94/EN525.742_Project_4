@@ -49,8 +49,10 @@ architecture Behavioral of project3_top is
       clk : IN STD_LOGIC; 
 	    probe0 : IN STD_LOGIC_VECTOR(7 DOWNTO 0); 
       probe1 : IN STD_LOGIC_VECTOR(7 DOWNTO 0); 
-      probe2 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-      probe3 : IN STD_LOGIC_VECTOR(15 DOWNTO 0)
+      probe2 : IN STD_LOGIC_VECTOR(15 DOWNTO 0); 
+      probe3 : IN STD_LOGIC_VECTOR(15 DOWNTO 0); 
+      probe4 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+      probe5 : IN STD_LOGIC_VECTOR(15 DOWNTO 0)
     );
   end component; 
   
@@ -176,60 +178,12 @@ architecture Behavioral of project3_top is
   signal ila_probe1 : STD_LOGIC_VECTOR(7 DOWNTO 0); 
   signal ila_probe2 : STD_LOGIC_VECTOR(15 DOWNTO 0);
   signal ila_probe3 : STD_LOGIC_VECTOR(15 DOWNTO 0);
+  signal ila_probe4 : STD_LOGIC_VECTOR(15 DOWNTO 0);
+  signal ila_probe5 : STD_LOGIC_VECTOR(15 DOWNTO 0);
   
 begin
 
-    not_reset <= not reset;
-
-    -- Connect audio codec   
-    ll_dac_gen: entity lowlevel_dac_intfc port map (
-        rst => reset,
-        clk100 => clk,
-        data_word => audio_out_word,-- audio_out_word_sin_test,
-        sdata => AC_GPIO0,
-        lrck => AC_GPIO3,
-        bclk => AC_GPIO2,
-        mclk=> AC_MCLK,
-        latched_data => adc_ready 
-    ); 
-    
-    buffer_latched_data : process (clk, reset)
-    begin
-      buffered_adc_ready <= uninitialized or adc_ready;  
-      if reset = '1' then
-        buffered_adc_ready <= '1';
-      elsif rising_edge(clk) then
-        if adc_ready = '1' then 
-          uninitialized <= '0';
-        end if;
-      end if; 
-    end process;
-    
-    fir_1_test : fir_compiler_0 port map (
-      aclk => clk,
-      s_axis_data_tvalid => dds_m_tvalid_out,
-      -- s_axis_data_tready : OUT STD_LOGIC;
-      s_axis_data_tdata => dds_m_tdata_out,
-      m_axis_data_tvalid => fir1_data_tvalid_out,
-      m_axis_data_tdata => fir1_data_out
-    );
-      
-    fir2_clk_gen : entity counter10bit port map (
-      CLK100MHZ => clk,
-      ENABLE => '1',
-      RESET => reset,
-      MAX_CNT => max_32_count,
-      ROLLOVER => fir2_aclk_3125khz
-    );
-      
-    fir_2_test : fir_compiler_1 port map (
-      aclk => fir2_aclk_3125khz,
-      s_axis_data_tvalid => fir1_data_tvalid_out,
-      -- s_axis_data_tready : OUT STD_LOGIC;
-      s_axis_data_tdata => fir1_data_out,
-      m_axis_data_tvalid => fir2_tvalid_out,
-      m_axis_data_tdata => fir2_data_out
-    );
+    not_reset <= not reset; 
     
     dds_comp_gen : component dds_compiler_0 port map (
         aclk => Clk,
@@ -243,10 +197,53 @@ begin
     dds_m_tready_in <= dds_m_tvalid_out;
     dds_resetn <= not dds_m_reset_out;
     
+    fir_1_test : fir_compiler_0 port map (
+      aclk => clk,
+      s_axis_data_tvalid => dds_m_tvalid_out,
+      -- s_axis_data_tready : OUT STD_LOGIC;
+      s_axis_data_tdata => dds_m_tdata_out,
+      m_axis_data_tvalid => fir1_data_tvalid_out,
+      m_axis_data_tdata => fir1_data_out
+    );
+      
+    fir_2_test : fir_compiler_1 port map (
+      --aclk => fir2_aclk_3125khz,
+      aclk => clk,
+      s_axis_data_tvalid => fir1_data_tvalid_out,
+      -- s_axis_data_tready : OUT STD_LOGIC;
+      s_axis_data_tdata => fir1_data_out,
+      m_axis_data_tvalid => fir2_tvalid_out,
+      m_axis_data_tdata => fir2_data_out
+    );
+    
     
     -- Bypass the FIR filter system when sw enabled
     audio_out_word(15 downto 0) <= dds_m_tdata_out when SW1 = '1' else fir2_data_out;
     audio_out_word(31 downto 16) <= audio_out_word(15 downto 0); 
+    
+    buffer_latched_data : process (clk, reset)
+        begin
+          buffered_adc_ready <= uninitialized or adc_ready;  
+          if reset = '1' then
+            buffered_adc_ready <= '1';
+          elsif rising_edge(clk) then
+            if adc_ready = '1' then 
+              uninitialized <= '0';
+            end if;
+          end if; 
+        end process;
+        
+        -- Connect audio codec   
+        ll_dac_gen: entity lowlevel_dac_intfc port map (
+            rst => reset,
+            clk100 => clk,
+            data_word => audio_out_word,-- audio_out_word_sin_test,
+            sdata => AC_GPIO0,
+            lrck => AC_GPIO3,
+            bclk => AC_GPIO2,
+            mclk=> AC_MCLK,
+            latched_data => adc_ready 
+        );
     
     proc_system_gen: component proc_system port map (
         Clk => Clk,
@@ -321,22 +318,32 @@ begin
     ila_probe0(2) <= spi_rtl_io1_o; -- spi output from dac
     ila_probe0(3) <= spi_rtl_ss_o_0(0); -- spi SS
     ila_probe0(4) <= adc_ready;
-    ila_probe0(7 downto 5) <= (others => '0');
+    
+    ila_probe0(5) <= fir1_data_tvalid_out;
+    ila_probe0(6) <= fir2_tvalid_out;
+    ila_probe0(7) <= dds_m_reset_out;
     
     ila_probe1(7 downto 1) <= (others => '0');
     --ila_probe1(1) <= dds_m_reset_out;
     ila_probe1(0) <= dds_m_tvalid_out;
     
-    ila_probe2(0) <= dds_m_reset_out;
-    ila_probe2(15 downto 1) <= (others => '0');
-    ila_probe3 <= audio_out_word(15 downto 0);
+    
+    ila_probe2 <= dds_m_tdata_out;
+    ila_probe3 <= fir1_data_out;
+    ila_probe4 <= fir2_data_out;
+    
+    ila_probe5(0) <= fir2_aclk_3125khz;
+    ila_probe5 <= (others => '0');
+    
 
     ila_inst: component ila_0 port map (
         clk => clk,
         probe0 => ila_probe0,
         probe1 => ila_probe1,
         probe2 => ila_probe2,
-        probe3 => ila_probe3
+        probe3 => ila_probe3,
+        probe4 => ila_probe4,
+        probe5 => ila_probe5
     );
     
 end Behavioral;
