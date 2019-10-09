@@ -82,6 +82,7 @@ END COMPONENT;
     constant max_32_count : unsigned (9 downto 0) := to_unsigned(31, 10);
     signal fir2_tvalid_out : std_logic;
     signal fir2_data_out : std_logic_vector(15 downto 0);
+    signal fir2_output_reset : std_logic := '0';
     
     signal dac_input : std_logic_vector(31 downto 0);
     signal dac_sdata : std_logic;
@@ -173,19 +174,27 @@ begin
 --      writeline(dds_output_file,outline);
 --    end if;
 --  end process capture_output;
+
+  fir2_reset_capture : process
+  begin
+    wait until rising_edge(clk);
+    if signed(fir2_data_out) < 0 then
+      fir2_output_reset <= '1';
+    end if;
+  end process;
   
   capture_output : process
     variable outline : line;
   begin
     wait until rising_edge(clk);
-    if fir2_tvalid_out = '1' then
+    if fir2_output_reset = '1' and fir2_tvalid_out = '1' then
       if num_samples = max_samples then
         assert num_samples < max_samples report "Simulation Finished." severity FAILURE;
       else 
         num_samples <= num_samples + 1;
       end if;
-      write(outline, TO_INTEGER(signed(dds_tdata_out)));
-      write(outline, ',');
+--      write(outline, TO_INTEGER(signed(dds_tdata_out)));
+--      write(outline, ',');
       write(outline, TO_INTEGER(signed(fir2_data_out)));
       writeline(dds_fir_output_file,outline);
     end if;
