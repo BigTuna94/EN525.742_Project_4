@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.4.1 (win64) Build 2117270 Tue Jan 30 15:32:00 MST 2018
-| Date         : Tue Oct  8 21:55:58 2019
+| Date         : Wed Oct  9 11:22:56 2019
 | Host         : ZPCX running 64-bit major release  (build 9200)
 | Command      : report_utilization -file project3_top_utilization_synth.rpt -pb project3_top_utilization_synth.pb
 | Design       : project3_top
@@ -36,7 +36,7 @@ Table of Contents
 | Slice Registers         |   43 |     0 |    106400 |  0.04 |
 |   Register as Flip Flop |   43 |     0 |    106400 |  0.04 |
 |   Register as Latch     |    0 |     0 |    106400 |  0.00 |
-| F7 Muxes                |    4 |     0 |     26600 |  0.02 |
+| F7 Muxes                |    3 |     0 |     26600 |  0.01 |
 | F8 Muxes                |    0 |     0 |     13300 |  0.00 |
 +-------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
@@ -156,8 +156,8 @@ Table of Contents
 | FDRE     |    8 |        Flop & Latch |
 | OBUF     |    5 |                  IO |
 | FDPE     |    5 |        Flop & Latch |
-| MUXF7    |    4 |               MuxFx |
 | LUT1     |    4 |                 LUT |
+| MUXF7    |    3 |               MuxFx |
 | LUT5     |    2 |                 LUT |
 | LUT4     |    1 |                 LUT |
 | BUFG     |    1 |               Clock |

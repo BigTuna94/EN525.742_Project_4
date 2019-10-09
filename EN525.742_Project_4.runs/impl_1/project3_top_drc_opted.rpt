@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.4.1 (win64) Build 2117270 Tue Jan 30 15:32:00 MST 2018
-| Date         : Tue Oct  8 21:57:28 2019
+| Date         : Wed Oct  9 11:24:26 2019
 | Host         : ZPCX running 64-bit major release  (build 9200)
 | Command      : report_drc -file project3_top_drc_opted.rpt -pb project3_top_drc_opted.pb -rpx project3_top_drc_opted.rpx
 | Design       : project3_top
@@ -75,12 +75,12 @@ Related violations: <none>
 
 REQP-28#1 Advisory
 enum_USE_MULT_NONE_connects_CEM_GND  
-fir_1_test/U0/i_synth/g_polyphase_decimation.i_polyphase_decimation/g_parallel.g_paths[0].g_accum.i_accum/i_add_accum/g_dsp48.g_dsp48e1.i_dsp48e1: When the DSP48E1 USE_MULT attribute is set to NONE, the CEM input pin should be tied to GND to save power.
+fir_1_gen/U0/i_synth/g_polyphase_decimation.i_polyphase_decimation/g_parallel.g_paths[0].g_accum.i_accum/i_add_accum/g_dsp48.g_dsp48e1.i_dsp48e1: When the DSP48E1 USE_MULT attribute is set to NONE, the CEM input pin should be tied to GND to save power.
 Related violations: <none>
 
 REQP-30#1 Advisory
 enum_MREG_0_connects_CEM_GND  
-fir_1_test/U0/i_synth/g_polyphase_decimation.i_polyphase_decimation/g_parallel.g_paths[0].g_accum.i_accum/i_add_accum/g_dsp48.g_dsp48e1.i_dsp48e1: When the DSP48E1 MREG attribute is set to 0, the CEM input pin should be tied to GND to save power.
+fir_1_gen/U0/i_synth/g_polyphase_decimation.i_polyphase_decimation/g_parallel.g_paths[0].g_accum.i_accum/i_add_accum/g_dsp48.g_dsp48e1.i_dsp48e1: When the DSP48E1 MREG attribute is set to 0, the CEM input pin should be tied to GND to save power.
 Related violations: <none>
 
 

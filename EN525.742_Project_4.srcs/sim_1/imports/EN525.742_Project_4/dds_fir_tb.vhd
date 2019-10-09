@@ -84,6 +84,8 @@ END COMPONENT;
     signal fir2_data_out : std_logic_vector(15 downto 0);
     signal fir2_output_reset : std_logic := '0';
     
+    signal fir2_output_shifted2 : std_logic_vector(15 downto 0);
+    
     signal dac_input : std_logic_vector(31 downto 0);
     signal dac_sdata : std_logic;
     signal dac_lrck : std_logic;
@@ -101,7 +103,7 @@ END COMPONENT;
     signal num_samples : unsigned(13 downto 0) := (others => '0');
     signal max_samples : unsigned(13 downto 0) := TO_UNSIGNED(16000, 14);
 
-    file dds_fir_output_file : TEXT open write_mode is "./dds_fir_output.txt";
+   -- file dds_fir_output_file : TEXT open write_mode is "./dds_fir_output.txt";
 
 begin 
 
@@ -145,6 +147,8 @@ begin
     m_axis_data_tdata => fir2_data_out
   );
   
+  -- Left Shift Twice to bring gain back to unity
+  fir2_output_shifted2 <= fir2_data_out(13 downto 0) & "00";
   
   -- dac_input <= dds_tdata_out & dds_tdata_out;
   
@@ -184,7 +188,7 @@ begin
   end process;
   
   capture_output : process
-    variable outline : line;
+   -- variable outline : line;
   begin
     wait until rising_edge(clk);
     if fir2_output_reset = '1' and fir2_tvalid_out = '1' then
@@ -195,8 +199,8 @@ begin
       end if;
 --      write(outline, TO_INTEGER(signed(dds_tdata_out)));
 --      write(outline, ',');
-      write(outline, TO_INTEGER(signed(fir2_data_out)));
-      writeline(dds_fir_output_file,outline);
+    --      write(outline, TO_INTEGER(signed(fir2_data_out)));
+    --      writeline(dds_fir_output_file,outline);
     end if;
   end process capture_output;
   

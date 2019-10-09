@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1972653333334fs"></ZoomStartTime>
-      <ZoomEndTime time="2044603333335fs"></ZoomEndTime>
-      <Cursor1Time time="1984645000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="2894000000001fs"></ZoomEndTime>
+      <Cursor1Time time="200000000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="11" />
    <wvobject fp_name="/dds_fir_tb/clk" type="logic">
@@ -47,15 +47,6 @@
       <obj_property name="ElementShortName">fir1_data_tvalid_out</obj_property>
       <obj_property name="ObjectShortName">fir1_data_tvalid_out</obj_property>
    </wvobject>
-   <wvobject fp_name="/dds_fir_tb/fir1_data_out" type="array">
-      <obj_property name="ElementShortName">fir1_data_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">fir1_data_out[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#008000</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
    <wvobject fp_name="/dds_fir_tb/fir2_aclk_3125khz" type="logic">
       <obj_property name="ElementShortName">fir2_aclk_3125khz</obj_property>
       <obj_property name="ObjectShortName">fir2_aclk_3125khz</obj_property>
@@ -74,5 +65,12 @@
    <wvobject fp_name="/dds_fir_tb/num_samples" type="array">
       <obj_property name="ElementShortName">num_samples[13:0]</obj_property>
       <obj_property name="ObjectShortName">num_samples[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dds_fir_tb/fir2_output_shifted2" type="array">
+      <obj_property name="ElementShortName">fir2_output_shifted2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">fir2_output_shifted2[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
    </wvobject>
 </wave_config>

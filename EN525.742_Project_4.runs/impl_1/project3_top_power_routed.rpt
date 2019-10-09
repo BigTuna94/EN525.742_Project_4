@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2017.4.1 (win64) Build 2117270 Tue Jan 30 15:32:00 MST 2018
-| Date             : Tue Oct  8 21:58:31 2019
+| Date             : Wed Oct  9 11:25:32 2019
 | Host             : ZPCX running 64-bit major release  (build 9200)
 | Command          : report_power -file project3_top_power_routed.rpt -pb project3_top_power_summary_routed.pb -rpx project3_top_power_routed.rpx
 | Design           : project3_top
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.196        |
+| Total On-Chip Power (W)  | 0.195        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 0.086        |
@@ -53,20 +53,20 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.024 |        6 |       --- |             --- |
-| Slice Logic              |     0.008 |    11733 |       --- |             --- |
-|   LUT as Logic           |     0.005 |     3560 |     53200 |            6.69 |
+| Slice Logic              |     0.008 |    11732 |       --- |             --- |
+|   LUT as Logic           |     0.005 |     3556 |     53200 |            6.68 |
 |   LUT as Distributed RAM |     0.001 |      200 |     17400 |            1.15 |
 |   Register               |    <0.001 |     5242 |    106400 |            4.93 |
 |   CARRY4                 |    <0.001 |      143 |     13300 |            1.08 |
 |   LUT as Shift Register  |    <0.001 |      406 |     17400 |            2.33 |
-|   F7/F8 Muxes            |    <0.001 |      174 |     53200 |            0.33 |
+|   F7/F8 Muxes            |    <0.001 |      173 |     53200 |            0.33 |
 |   Others                 |    <0.001 |     1039 |       --- |             --- |
-| Signals                  |     0.013 |     8262 |       --- |             --- |
+| Signals                  |     0.013 |     8267 |       --- |             --- |
 | Block RAM                |     0.031 |     42.5 |       140 |           30.36 |
 | DSPs                     |     0.004 |        5 |       220 |            2.27 |
 | I/O                      |     0.006 |       21 |       200 |           10.50 |
 | Static Power             |     0.109 |          |           |                 |
-| Total                    |     0.196 |          |           |                 |
+| Total                    |     0.195 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.087 |       0.078 |      0.009 |
+| Vccint    |       1.000 |     0.086 |       0.078 |      0.009 |
 | Vccaux    |       1.800 |     0.011 |       0.000 |      0.010 |
 | Vcco33    |       3.300 |     0.003 |       0.002 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -244,7 +244,7 @@ Table of Contents
 |           I_PHASEGEN.i_conventional_accum.i_accum                                                                  |    <0.001 |
 |             i_fabric.i_common.i_phase_acc                                                                          |    <0.001 |
 |             i_fabric.i_one_channel.i_accum                                                                         |    <0.001 |
-|           I_SINCOS.i_std_rom.i_rom                                                                                 |     0.017 |
+|           I_SINCOS.i_std_rom.i_rom                                                                                 |     0.016 |
 |             i_rtl.i_quarter_table.i_addr_reg_c                                                                     |    <0.001 |
 |             i_rtl.i_quarter_table.i_piped_map.i_cardinal_cos_ls                                                    |    <0.001 |
 |             i_rtl.i_quarter_table.i_piped_map.i_cardinal_cos_ms                                                    |    <0.001 |
@@ -252,7 +252,7 @@ Table of Contents
 |             i_rtl.i_quarter_table.i_piped_map.i_original_cos_ms                                                    |    <0.001 |
 |             i_rtl.i_quarter_table.i_rom_reg_b                                                                      |    <0.001 |
 |         i_has_nd_rdy_pipe.valid_phase_read_del                                                                     |    <0.001 |
-|   fir_1_test                                                                                                       |     0.006 |
+|   fir_1_gen                                                                                                        |     0.006 |
 |     U0                                                                                                             |     0.006 |
 |       i_synth                                                                                                      |     0.006 |
 |         g_polyphase_decimation.i_polyphase_decimation                                                              |     0.006 |
@@ -310,7 +310,7 @@ Table of Contents
 |           g_parallel.i_store_accum                                                                                 |    <0.001 |
 |           g_s_data_chan_fifo.i_s_data_chan_fifo                                                                    |    <0.001 |
 |             fifo0                                                                                                  |    <0.001 |
-|   fir_2_test                                                                                                       |     0.008 |
+|   fir_2_gen                                                                                                        |     0.008 |
 |     U0                                                                                                             |     0.008 |
 |       i_synth                                                                                                      |     0.008 |
 |         g_polyphase_decimation.i_polyphase_decimation                                                              |     0.008 |
@@ -1458,7 +1458,7 @@ Table of Contents
 |                 MUXCY_I                                                                                            |    <0.001 |
 |             Use_DBUS.DAXI_Interface_I1                                                                             |    <0.001 |
 |             Use_DLMB.Using_Latch_AS_Logic.AND2B1L_I1                                                               |    <0.001 |
-|             Use_Debug_Logic.Master_Core.Debug_Perf                                                                 |    <0.001 |
+|             Use_Debug_Logic.Master_Core.Debug_Perf                                                                 |     0.001 |
 |               Serial_Dbg_Intf.SRL16E_1                                                                             |    <0.001 |
 |               Serial_Dbg_Intf.SRL16E_2                                                                             |    <0.001 |
 |               Serial_Dbg_Intf.SRL16E_3                                                                             |    <0.001 |

@@ -2,8 +2,8 @@
 # Vivado v2017.4.1 (64-bit)
 # SW Build 2117270 on Tue Jan 30 15:32:00 MST 2018
 # IP Build 2095745 on Tue Jan 30 17:13:15 MST 2018
-# Start of session at: Tue Oct  8 21:56:05 2019
-# Process ID: 164
+# Start of session at: Wed Oct  9 11:23:02 2019
+# Process ID: 13160
 # Current directory: C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.runs/impl_1
 # Command line: vivado.exe -log project3_top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source project3_top.tcl -notrace
 # Log file: C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.runs/impl_1/project3_top.vdi

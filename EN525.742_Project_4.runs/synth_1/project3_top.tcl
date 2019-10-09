@@ -16,8 +16,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param tcl.collectionResultDisplayLimit 0
-set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -34,8 +32,8 @@ set_property ip_cache_permissions {read write} [current_project]
 add_files C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/Debug/project3.elf
 set_property SCOPED_TO_REF proc_system [get_files -all C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/Debug/project3.elf]
 set_property SCOPED_TO_CELLS microblaze_0 [get_files -all C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/Debug/project3.elf]
-add_files C:/Users/Zach/Documents/MATLAB/fir_filter_1.coe
-add_files C:/Users/Zach/Documents/MATLAB/fir_filter_2.coe
+add_files c:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/fir_filter_1.coe
+add_files c:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/fir_filter_2.coe
 read_vhdl -library xil_defaultlib {
   C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/project_1_part_2.srcs/sources_1/imports/p1p2_src/lowlevel_dac_intfc.vhd
   C:/Users/Zach/Documents/GradSchool/Fall_2019/EN525.742_SOC_Design_Lab/EN525.742_Project_4/EN525.742_Project_4.srcs/sources_1/imports/src/project3_top.vhd

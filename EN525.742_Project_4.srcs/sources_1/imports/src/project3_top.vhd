@@ -173,6 +173,7 @@ architecture Behavioral of project3_top is
   constant max_32_count : unsigned (9 downto 0) := to_unsigned(31, 10);
   signal fir2_tvalid_out : std_logic;
   signal fir2_data_out : std_logic_vector(15 downto 0);
+  signal fir2_output_shifted2 : std_logic_vector(15 downto 0);
 
   signal ila_probe0 : STD_LOGIC_VECTOR(7 DOWNTO 0); 
   signal ila_probe1 : STD_LOGIC_VECTOR(7 DOWNTO 0); 
@@ -197,7 +198,7 @@ begin
     dds_m_tready_in <= dds_m_tvalid_out;
     dds_resetn <= not dds_m_reset_out;
     
-    fir_1_test : fir_compiler_0 port map (
+    fir_1_gen : fir_compiler_0 port map (
       aclk => clk,
       s_axis_data_tvalid => dds_m_tvalid_out,
       -- s_axis_data_tready : OUT STD_LOGIC;
@@ -206,7 +207,7 @@ begin
       m_axis_data_tdata => fir1_data_out
     );
       
-    fir_2_test : fir_compiler_1 port map (
+    fir_2_gen : fir_compiler_1 port map (
       --aclk => fir2_aclk_3125khz,
       aclk => clk,
       s_axis_data_tvalid => fir1_data_tvalid_out,
@@ -216,9 +217,12 @@ begin
       m_axis_data_tdata => fir2_data_out
     );
     
+     -- Left Shift Twice to bring gain back to unity
+    fir2_output_shifted2 <= fir2_data_out(13 downto 0) & "00";
+    
     
     -- Bypass the FIR filter system when sw enabled
-    audio_out_word(15 downto 0) <= dds_m_tdata_out when SW1 = '1' else fir2_data_out;
+    audio_out_word(15 downto 0) <= dds_m_tdata_out when SW1 = '1' else fir2_output_shifted2;
     audio_out_word(31 downto 16) <= audio_out_word(15 downto 0); 
     
     buffer_latched_data : process (clk, reset)
